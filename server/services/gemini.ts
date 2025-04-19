@@ -9,7 +9,8 @@ export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<stri
   const apiKey = process.env.GEMINI_API_KEY;
   
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is not defined in environment variables");
+    console.error("GEMINI_API_KEY is missing");
+    throw new Error("API key not configured. Please add GEMINI_API_KEY to your environment variables.");
   }
 
   // Build context-specific fashion prompt
