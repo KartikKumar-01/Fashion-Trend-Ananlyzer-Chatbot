@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Shirt } from "lucide-react";
 
 export function ChatPanel() {
-  const { messages, isLoading } = useChat();
+  const { messages, isLoading, sendMessage } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -39,7 +39,24 @@ export function ChatPanel() {
             <div className="text-center p-8 rounded-xl bg-muted/30 backdrop-blur-sm max-w-md">
               <TShirtIcon className="w-16 h-16 text-primary/60 mx-auto mb-4" />
               <h3 className="text-xl font-medium text-white mb-2">Fashion Trend Analyzer</h3>
-              <p className="text-gray-400">Ask me anything about fashion trends, style advice, or outfit recommendations!</p>
+              <p className="text-gray-400 mb-6">Ask me anything about fashion trends, style advice, or outfit recommendations!</p>
+              <div className="grid gap-2">
+                {[
+                  "What are the trending colors this season?",
+                  "How can I style a basic white t-shirt?",
+                  "What are sustainable fashion trends?",
+                  "Recommend outfits for a casual office look",
+                  "What's trending in streetwear fashion?"
+                ].map((question) => (
+                  <button
+                    key={question}
+                    onClick={() => sendMessage(question)}
+                    className="text-sm text-left px-4 py-2 rounded-lg bg-muted/50 hover:bg-muted/70 text-gray-300 hover:text-white transition-colors border border-purple-500/20 hover:border-purple-500/40"
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
