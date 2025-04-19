@@ -40,8 +40,11 @@ export function ChatMessage({ message }: ChatMessageProps) {
 }
 
 function formatContent(content: string): string {
+  // Replace markdown image syntax with HTML img tags
+  let formatted = content.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="w-full max-w-sm rounded-md my-3 shadow-lg" />');
+
   // Convert markdown-style lists to HTML
-  let formatted = content.replace(/\n- ([^\n]+)/g, '<li>$1</li>');
+  formatted = formatted.replace(/\n- ([^\n]+)/g, '<li>$1</li>');
   if (formatted.includes('<li>')) {
     formatted = formatted.replace(/<li>/g, '<ul class="list-disc ml-5 mt-2 space-y-1"><li>');
     formatted = formatted.replace(/<\/li>(?!\s*<li>)/g, '</li></ul>');
@@ -51,10 +54,22 @@ function formatContent(content: string): string {
   formatted = formatted.replace(/\n\n/g, '</p><p class="mt-2 text-gray-200">');
   
   // Bold text between ** markers
-  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<span class="font-medium text-white">$1</span>');
+  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<span class="font-semibold text-white">$1</span>');
+  
+  // Handle markdown headers
+  formatted = formatted.replace(/### (.*?)\n/g, '<h3 class="text-lg font-bold text-white mt-4 mb-2">$1</h3>');
+  formatted = formatted.replace(/## (.*?)\n/g, '<h2 class="text-xl font-bold text-white mt-4 mb-2">$1</h2>');
+  formatted = formatted.replace(/# (.*?)\n/g, '<h1 class="text-2xl font-bold text-white mt-4 mb-3">$1</h1>');
+  
+  // Convert horizontal rules
+  formatted = formatted.replace(/---/g, '<hr class="my-4 border-gray-600" />');
   
   // Wrap in paragraph tags if not already
-  if (!formatted.startsWith('<p>')) {
+  if (!formatted.startsWith('<p>') && 
+      !formatted.startsWith('<h1>') && 
+      !formatted.startsWith('<h2>') && 
+      !formatted.startsWith('<h3>') && 
+      !formatted.startsWith('<img')) {
     formatted = `<p class="text-gray-200">${formatted}</p>`;
   }
   
