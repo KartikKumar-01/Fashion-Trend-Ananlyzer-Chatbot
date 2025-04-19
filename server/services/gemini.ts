@@ -1,7 +1,7 @@
 import { GeminiPrompt } from "@shared/schema";
 
-// Gemini API base URL - using gemini-flash-2.0-lite model
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-2.0-lite:generateContent";
+// Gemini API base URL - using standard gemini-pro model
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
 // Function to generate a response using Gemini API
 export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<string> {

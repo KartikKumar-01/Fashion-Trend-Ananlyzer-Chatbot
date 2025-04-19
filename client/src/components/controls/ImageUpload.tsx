@@ -58,12 +58,14 @@ export function ImageUpload() {
       <Button
         type="button"
         variant="outline"
-        className="bg-muted hover:bg-background text-gray-300 px-3 py-2 h-auto rounded-lg flex items-center gap-2"
+        className="bg-gradient-to-r from-primary/30 to-purple-900/20 hover:from-primary/40 hover:to-purple-900/30 text-white border-purple-900/30 px-4 py-1.5 h-auto rounded-lg flex items-center gap-2 shadow-sm transition-all"
         onClick={handleClick}
         disabled={isUploading}
       >
-        <ImageIcon className="h-4 w-4" />
-        <span>{isUploading ? "Uploading..." : "Upload Image"}</span>
+        <ImageIcon className={`h-4 w-4 ${isUploading ? 'animate-pulse' : ''}`} />
+        <span className="font-medium">
+          {isUploading ? "Uploading..." : "Analyze Image"}
+        </span>
       </Button>
       <input
         type="file"
