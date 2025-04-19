@@ -24,7 +24,7 @@ export function ChatInput() {
           <Input
             type="text"
             placeholder="Ask about fashion trends and styles..."
-            className="w-full bg-muted/60 backdrop-blur-sm rounded-full border border-purple-700/30 px-5 py-6 pr-16 focus:outline-none focus:ring-2 focus:ring-primary/50 text-white shadow-md hover:shadow-purple-900/20 transition-all"
+            className="w-full bg-muted/60 backdrop-blur-sm rounded-full border border-purple-700/30 px-6 py-6 pr-16 focus:outline-none focus:ring-2 focus:ring-primary/50 text-white shadow-lg hover:shadow-purple-900/30 transition-all text-base"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             disabled={isLoading}

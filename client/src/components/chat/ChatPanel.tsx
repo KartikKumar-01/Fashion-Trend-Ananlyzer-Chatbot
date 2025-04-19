@@ -24,7 +24,7 @@ export function ChatPanel() {
   return (
     <div className="w-full flex flex-col h-full border-r border-gray-700">
       {/* Chat Controls */}
-      <div className="bg-gradient-to-r from-purple-900/40 to-background p-4 border-b border-gray-700 flex flex-wrap gap-3 items-center justify-between">
+      <div className="bg-gradient-to-r from-purple-900/40 to-background p-5 border-b border-gray-700 flex flex-wrap gap-4 items-center justify-between backdrop-blur-sm shadow-sm">
         <div className="flex gap-2 items-center">
           <SeasonSelector />
           <GenderToggle />

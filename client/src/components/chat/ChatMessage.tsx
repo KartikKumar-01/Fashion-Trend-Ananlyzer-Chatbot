@@ -31,7 +31,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-700 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20 border border-purple-500/30">
         <Shirt className="h-5 w-5 text-white" />
       </div>
-      <div className="chat-bubble-bot bg-muted/80 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none shadow-md max-w-[85%] hover:bg-muted/90 transition-all">
+      <div className="chat-bubble-bot bg-muted/80 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none shadow-lg max-w-[85%] hover:bg-muted/90 transition-all border border-purple-500/10">
         <div className="text-gray-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: formatContent(content) }} />
         <div className="text-xs text-gray-400 mt-2 font-light">{formatDate(timestamp)}</div>
       </div>
