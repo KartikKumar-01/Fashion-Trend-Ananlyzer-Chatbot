@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CompassIcon, LeafIcon, SparklesIcon, CloudyIcon, ShirtIcon, MapPinIcon } from "lucide-react";
+import { CompassIcon, LeafIcon, SparklesIcon, CloudyIcon, ShirtIcon, MapPinIcon, ExternalLinkIcon, HeartIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ToggleGroup, 
@@ -23,6 +23,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+
+// Import images
+import y2kImage from "../../assets/images/y2k.jpg";
+import streetwearImage from "../../assets/images/streetwear.jpg";
+import minimalistImage from "../../assets/images/minimalist.jpg";
+import darkAcademiaImage from "../../assets/images/darkacademia.jpg";
+import cottageCore from "../../assets/images/cottagecore.jpg";
+import urbanImage from "../../assets/images/urban.jpg";
+import parisImage from "../../assets/images/paris.jpg";
+import sustainableImage from "../../assets/images/sustainable.jpg";
+import fashionTrendImage from "../../assets/images/fashion-trend.png";
 
 type DiscoverTab = "trending" | "outfits" | "sustainable";
 
@@ -168,24 +179,40 @@ export function DiscoverPanel() {
                     className="w-full"
                   >
                     <CarouselContent className="-ml-2 md:-ml-4">
-                      {Array.from({ length: 5 }).map((_, index) => (
+                      {[
+                        { tag: "Y2K", image: y2kImage, posts: "2.4M" },
+                        { tag: "Streetwear", image: streetwearImage, posts: "5.7M" },
+                        { tag: "Minimalist", image: minimalistImage, posts: "3.2M" },
+                        { tag: "DarkAcademia", image: darkAcademiaImage, posts: "1.8M" },
+                        { tag: "Cottagecore", image: cottageCore, posts: "4.1M" }
+                      ].map((item, index) => (
                         <CarouselItem key={index} className="pl-2 md:pl-4 basis-3/4 sm:basis-1/2 md:basis-1/3">
                           <Card className="bg-muted/70 backdrop-blur-md border-purple-900/20 hover:shadow-md hover:border-purple-800/30 transition-all overflow-hidden">
                             <div className="relative aspect-square w-full overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                              <div className="bg-gradient-to-br from-primary/5 to-purple-900/40 h-full w-full"></div>
+                              <img 
+                                src={item.image} 
+                                alt={item.tag} 
+                                className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-105"
+                              />
                               <div className="absolute bottom-2 left-2 z-20">
                                 <Badge 
                                   className="bg-gradient-to-r from-primary to-purple-800 hover:from-primary hover:to-purple-800 shadow-md px-2 py-1 text-white border-none"
                                 >
-                                  #{["Y2K", "Streetwear", "Minimalist", "DarkAcademia", "Cottagecore"][index]}
+                                  #{item.tag}
                                 </Badge>
                               </div>
                             </div>
                             <CardContent className="p-3">
-                              <p className="text-xs text-gray-300 line-clamp-2 h-8">Trending fashion style with unique aesthetic and growing popularity</p>
+                              <p className="text-xs text-gray-300 line-clamp-2 h-8">
+                                {item.tag === "Y2K" && "Early 2000s inspired fashion with colorful accessories and nostalgic elements"}
+                                {item.tag === "Streetwear" && "Urban-inspired casual clothing with bold graphics and statement pieces"}
+                                {item.tag === "Minimalist" && "Clean, simple silhouettes with neutral colors and quality basics"}
+                                {item.tag === "DarkAcademia" && "Scholarly aesthetic with tweed, plaid and vintage-inspired pieces"}
+                                {item.tag === "Cottagecore" && "Romanticized rural lifestyle with floral prints and prairie dresses"}
+                              </p>
                               <div className="flex items-center justify-between mt-2">
-                                <span className="text-xs text-primary/90">{Math.floor(Math.random() * 5) + 1}.{Math.floor(Math.random() * 9)}M posts</span>
+                                <span className="text-xs text-primary/90">{item.posts} posts</span>
                                 <span className="text-xs text-gray-400">{selectedRegion}</span>
                               </div>
                             </CardContent>
@@ -210,24 +237,68 @@ export function DiscoverPanel() {
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {Array.from({ length: 4 }).map((_, index) => (
+                    {[
+                      { 
+                        name: "Urban Explorer", 
+                        image: urbanImage, 
+                        designer: "Alex Wong", 
+                        description: "Versatile city outfit with layered textures and comfortable footwear", 
+                        mood: "Casual", 
+                        likes: 2456 
+                      },
+                      { 
+                        name: "Parisian Chic", 
+                        image: parisImage, 
+                        designer: "Marie Laurent", 
+                        description: "Elegant ensemble with classic silhouettes and subtle statement pieces", 
+                        mood: "Elegant", 
+                        likes: 3187 
+                      },
+                      { 
+                        name: "Tokyo Street", 
+                        image: streetwearImage, 
+                        designer: "Haru Tanaka", 
+                        description: "Bold avant-garde pieces with experimental proportions and textures", 
+                        mood: "Bold", 
+                        likes: 1853 
+                      },
+                      { 
+                        name: "Vintage Academia", 
+                        image: darkAcademiaImage, 
+                        designer: "Oliver Bennett", 
+                        description: "Scholar-inspired look with tweed, wool and vintage accessories", 
+                        mood: "Retro", 
+                        likes: 2912 
+                      }
+                    ].map((outfit, index) => (
                       <Card key={index} className="bg-muted/70 backdrop-blur-md border-purple-900/20 hover:shadow-md hover:shadow-purple-900/5 transition-all overflow-hidden">
                         <div className="relative aspect-square w-full overflow-hidden group">
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                          <div className="bg-gradient-to-br from-purple-900/20 to-black/60 h-full w-full"></div>
+                          <img 
+                            src={outfit.image} 
+                            alt={outfit.name} 
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          />
                           <div className="absolute bottom-3 left-3 z-20">
-                            <h4 className="text-white font-medium text-sm">{["Urban Explorer", "Parisian Chic", "Tokyo Street", "Vintage Academia"][index]}</h4>
-                            <p className="text-gray-200 text-xs mt-0.5">by Designer</p>
+                            <h4 className="text-white font-medium text-sm">{outfit.name}</h4>
+                            <p className="text-gray-200 text-xs mt-0.5">by {outfit.designer}</p>
                           </div>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="absolute top-3 right-3 z-20 h-8 w-8 p-0 rounded-full bg-black/40 border-white/10 text-white/70 hover:bg-primary/60 hover:border-white/20 hover:text-white"
+                          >
+                            <HeartIcon className="h-4 w-4" />
+                          </Button>
                         </div>
                         <CardContent className="p-3">
-                          <p className="text-xs text-gray-300 line-clamp-2 h-8">Stylish outfit with attention to detail and perfect for the current season</p>
+                          <p className="text-xs text-gray-300 line-clamp-2 h-8">{outfit.description}</p>
                           <div className="flex items-center justify-between mt-2">
                             <Badge variant="outline" className="text-xs bg-muted/50 text-primary border-purple-900/20">
-                              {selectedMood === "All" ? ["Casual", "Elegant", "Bold", "Retro"][index] : selectedMood}
+                              {selectedMood === "All" ? outfit.mood : selectedMood}
                             </Badge>
                             <span className="text-xs text-gray-400">
-                              {Math.floor(Math.random() * 3) + 1},{Math.floor(Math.random() * 900) + 100} likes
+                              {outfit.likes.toLocaleString()} likes
                             </span>
                           </div>
                         </CardContent>
@@ -255,7 +326,11 @@ export function DiscoverPanel() {
                   <Card className="bg-muted/70 backdrop-blur-md border-green-900/20 hover:shadow-md hover:shadow-green-900/5 transition-all overflow-hidden">
                     <div className="flex flex-col sm:flex-row">
                       <div className="w-full sm:w-1/3 aspect-video sm:aspect-square overflow-hidden">
-                        <div className="bg-gradient-to-br from-green-900/20 to-black/60 h-full w-full"></div>
+                        <img 
+                          src={sustainableImage} 
+                          alt="Sustainable Fashion" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <CardContent className="p-3 w-full sm:w-2/3">
                         <div className="mb-1">
@@ -276,9 +351,48 @@ export function DiscoverPanel() {
                           <Button 
                             variant="outline" 
                             size="sm" 
-                            className="h-7 text-xs bg-muted/50 border-green-900/30 text-white hover:bg-green-900/20"
+                            className="h-7 text-xs bg-muted/50 border-green-900/30 text-white hover:bg-green-900/20 flex items-center gap-1.5"
                           >
                             Visit Website
+                            <ExternalLinkIcon className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </div>
+                  </Card>
+                  
+                  <Card className="bg-muted/70 backdrop-blur-md border-green-900/20 hover:shadow-md hover:shadow-green-900/5 transition-all overflow-hidden">
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="w-full sm:w-1/3 aspect-video sm:aspect-square overflow-hidden">
+                        <img 
+                          src={fashionTrendImage} 
+                          alt="Recycled Denim" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-3 w-full sm:w-2/3">
+                        <div className="mb-1">
+                          <Badge variant="outline" className="text-xs bg-green-900/20 text-green-400 border-green-900/30">
+                            BlueRenewal
+                          </Badge>
+                        </div>
+                        <h4 className="text-sm font-medium text-white">Recycled Denim Initiative</h4>
+                        <p className="text-xs text-gray-300 mt-1 line-clamp-2">Jeans made from post-consumer recycled denim with zero-waste production</p>
+                        
+                        <div className="mt-2 p-2 bg-green-900/10 rounded border border-green-900/20">
+                          <p className="text-xs text-green-300 font-medium">
+                            <span className="text-green-400">Impact:</span> Diverts 5kg of textile waste per pair
+                          </p>
+                        </div>
+                        
+                        <div className="mt-3 flex justify-end">
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="h-7 text-xs bg-muted/50 border-green-900/30 text-white hover:bg-green-900/20 flex items-center gap-1.5"
+                          >
+                            Visit Website
+                            <ExternalLinkIcon className="h-3 w-3" />
                           </Button>
                         </div>
                       </CardContent>
