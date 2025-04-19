@@ -35,12 +35,12 @@ export function ChatPanel() {
       {/* Chat Messages Container */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-hide bg-gradient-to-b from-background to-background/50">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center p-8 rounded-xl bg-muted/30 backdrop-blur-sm max-w-md">
+          <div className="flex items-center justify-center h-full p-4">
+            <div className="text-center p-8 rounded-xl bg-muted/30 backdrop-blur-sm max-w-lg w-full">
               <TShirtIcon className="w-16 h-16 text-primary/60 mx-auto mb-4" />
               <h3 className="text-xl font-medium text-white mb-2">Fashion Trend Analyzer</h3>
               <p className="text-gray-400 mb-6">Ask me anything about fashion trends, style advice, or outfit recommendations!</p>
-              <div className="grid gap-2">
+              <div className="grid gap-3 mt-6">
                 {[
                   "What are the trending colors this season?",
                   "How can I style a basic white t-shirt?",
@@ -51,7 +51,7 @@ export function ChatPanel() {
                   <button
                     key={question}
                     onClick={() => sendMessage(question)}
-                    className="text-sm text-left px-4 py-2 rounded-lg bg-muted/50 hover:bg-muted/70 text-gray-300 hover:text-white transition-colors border border-purple-500/20 hover:border-purple-500/40"
+                    className="text-sm text-left px-5 py-3 rounded-lg bg-muted/50 hover:bg-muted/70 text-gray-300 hover:text-white transition-all border border-purple-500/20 hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/10"
                   >
                     {question}
                   </button>
