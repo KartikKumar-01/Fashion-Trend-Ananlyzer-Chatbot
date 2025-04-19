@@ -7,7 +7,7 @@ export function Header() {
         <div className="p-1.5 bg-gradient-to-br from-primary to-purple-800 rounded-full shadow-lg shadow-primary/20">
           <Shirt className="text-white text-xl" />
         </div>
-        <h1 className="text-xl font-semibold text-white tracking-tight">Fashion Trend Analyzer</h1>
+        <h1 className="text-xl font-semibold text-white tracking-tight">Trenz</h1>
       </div>
       <div className="flex items-center space-x-3">
         <button className="text-gray-300 hover:text-white bg-muted/50 p-1.5 rounded-full hover:bg-muted/80 transition-colors">
