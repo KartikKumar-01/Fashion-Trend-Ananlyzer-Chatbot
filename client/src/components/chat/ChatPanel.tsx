@@ -22,7 +22,7 @@ export function ChatPanel() {
   }, [messages]);
 
   return (
-    <div className="w-full lg:w-2/3 flex flex-col h-full border-r border-gray-700">
+    <div className="w-full flex flex-col h-full border-r border-gray-700">
       {/* Chat Controls */}
       <div className="bg-gradient-to-r from-purple-900/40 to-background p-4 border-b border-gray-700 flex flex-wrap gap-3 items-center justify-between">
         <div className="flex gap-2 items-center">

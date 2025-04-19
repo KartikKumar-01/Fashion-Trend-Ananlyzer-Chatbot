@@ -105,7 +105,7 @@ export function DiscoverPanel() {
   }, []);
 
   return (
-    <div className="w-full lg:w-1/3 flex flex-col h-full bg-background overflow-hidden">
+    <div className="w-full flex flex-col h-full bg-background overflow-hidden">
       <div className="bg-gradient-to-r from-purple-900/40 to-background p-4 border-b border-gray-700">
         <h2 className="text-lg font-semibold flex items-center">
           <CompassIcon className="h-5 w-5 text-primary/80 mr-2" />

@@ -33,7 +33,7 @@ export default function Home() {
         </Button>
       </div>
 
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden max-w-screen-2xl mx-auto w-full">
         {view === "chat" ? (
           <ChatPanel />
         ) : (
