@@ -1,7 +1,7 @@
 import { GeminiPrompt } from "@shared/schema";
 
-// Updated Gemini API base URL for the v1beta3 version
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta3/models/gemini-2.0-flash-lite";
+// Updated Gemini API base URL for the v1beta version
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
 // Function to generate a response using Gemini API
 export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<string> {
@@ -26,15 +26,17 @@ export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<stri
   fashionPrompt += `User question: ${prompt.query}`;
 
   try {
-    const response = await fetch(`${GEMINI_API_URL}:generateContent?key=${apiKey}`, {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prompt: {
-          text: fashionPrompt
-        },
+        contents: [{
+          parts: [{
+            text: fashionPrompt
+          }]
+        }],
         generationConfig: {
           temperature: 0.7,
           topK: 40,
@@ -53,6 +55,7 @@ export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<stri
     const data = await response.json();
 
     if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      console.error("Unexpected Gemini response format:", data);
       throw new Error("Unexpected response format from Gemini API");
     }
 
