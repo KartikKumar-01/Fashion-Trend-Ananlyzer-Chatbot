@@ -1,7 +1,7 @@
 import { GeminiPrompt } from "@shared/schema";
 
-// Updated Gemini API base URL for the v1beta version
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro";
+// Updated Gemini API base URL for the v1beta3 version
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta3/models/gemini-2.0-flash-lite";
 
 // Function to generate a response using Gemini API
 export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<string> {
@@ -32,11 +32,9 @@ export async function generateGeminiResponse(prompt: GeminiPrompt): Promise<stri
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: fashionPrompt
-          }]
-        }],
+        prompt: {
+          text: fashionPrompt
+        },
         generationConfig: {
           temperature: 0.7,
           topK: 40,
