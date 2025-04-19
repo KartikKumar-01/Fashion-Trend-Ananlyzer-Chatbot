@@ -12,28 +12,28 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
   if (isUser) {
     return (
-      <div className="flex items-start justify-end space-x-2 mb-6">
-        <div className="chat-bubble-user bg-primary p-3 rounded-lg max-w-[80%]">
-          <p className="text-white">{content}</p>
-          <div className="text-xs text-white/70 text-right mt-1">
+      <div className="flex items-start justify-end space-x-3 transform transition-all">
+        <div className="chat-bubble-user bg-gradient-to-br from-primary to-purple-700 p-4 rounded-2xl rounded-tr-none shadow-lg shadow-primary/20 max-w-[85%] hover:shadow-xl hover:shadow-primary/30 transition-all">
+          <p className="text-white leading-relaxed">{content}</p>
+          <div className="text-xs text-white/70 text-right mt-2 font-light">
             {formatDate(timestamp)}
           </div>
         </div>
-        <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center flex-shrink-0">
-          <User className="h-4 w-4 text-white" />
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center flex-shrink-0 shadow-md border border-gray-700">
+          <User className="h-5 w-5 text-white" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex items-start space-x-2 mb-6">
-      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
-        <Shirt className="h-4 w-4 text-white" />
+    <div className="flex items-start space-x-3 transform transition-all">
+      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-700 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20 border border-purple-500/30">
+        <Shirt className="h-5 w-5 text-white" />
       </div>
-      <div className="chat-bubble-bot bg-muted p-3 rounded-lg max-w-[80%]">
-        <div className="text-gray-200" dangerouslySetInnerHTML={{ __html: formatContent(content) }} />
-        <div className="text-xs text-gray-400 mt-1">{formatDate(timestamp)}</div>
+      <div className="chat-bubble-bot bg-muted/80 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none shadow-md max-w-[85%] hover:bg-muted/90 transition-all">
+        <div className="text-gray-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: formatContent(content) }} />
+        <div className="text-xs text-gray-400 mt-2 font-light">{formatDate(timestamp)}</div>
       </div>
     </div>
   );
