@@ -1,23 +1,25 @@
 import { useState } from "react";
-import { MessageSquare, BarChart2 } from "lucide-react";
+import { MessageSquare, CompassIcon } from "lucide-react";
 
 interface MobileTabsProps {
-  onTabChange: (tab: "chat" | "trends") => void;
+  onTabChange: (tab: "chat" | "discover") => void;
 }
 
 export function MobileTabs({ onTabChange }: MobileTabsProps) {
-  const [activeTab, setActiveTab] = useState<"chat" | "trends">("chat");
+  const [activeTab, setActiveTab] = useState<"chat" | "discover">("chat");
 
-  const handleTabChange = (tab: "chat" | "trends") => {
+  const handleTabChange = (tab: "chat" | "discover") => {
     setActiveTab(tab);
     onTabChange(tab);
   };
 
   return (
-    <div className="lg:hidden border-t border-gray-700 bg-muted flex">
+    <div className="lg:hidden border-t border-gray-700 bg-gradient-to-r from-background to-muted flex">
       <button
         className={`flex-1 py-3 font-medium flex items-center justify-center ${
-          activeTab === "chat" ? "text-white" : "text-gray-400"
+          activeTab === "chat" 
+            ? "text-white bg-gradient-to-b from-primary/10 to-transparent" 
+            : "text-gray-400"
         }`}
         onClick={() => handleTabChange("chat")}
       >
@@ -26,12 +28,14 @@ export function MobileTabs({ onTabChange }: MobileTabsProps) {
       </button>
       <button
         className={`flex-1 py-3 font-medium flex items-center justify-center ${
-          activeTab === "trends" ? "text-white" : "text-gray-400"
+          activeTab === "discover" 
+            ? "text-white bg-gradient-to-b from-primary/10 to-transparent" 
+            : "text-gray-400"
         }`}
-        onClick={() => handleTabChange("trends")}
+        onClick={() => handleTabChange("discover")}
       >
-        <BarChart2 className="h-4 w-4 mr-2" />
-        Trends
+        <CompassIcon className="h-4 w-4 mr-2" />
+        Discover
       </button>
     </div>
   );
