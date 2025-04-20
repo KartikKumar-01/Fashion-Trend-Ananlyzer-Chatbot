@@ -13,7 +13,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
   if (isUser) {
     return (
       <div className="flex items-start justify-end space-x-3 transform transition-all">
-        <div className="chat-bubble-user bg-gradient-to-br from-primary to-purple-700 p-4 rounded-2xl rounded-tr-none shadow-lg shadow-primary/20 max-w-[85%] hover:shadow-xl hover:shadow-primary/30 transition-all">
+        <div className="chat-bubble-user bg-gradient-to-br from-primary to-purple-700 p-3 sm:p-4 rounded-2xl rounded-tr-none shadow-lg shadow-primary/20 max-w-[90%] sm:max-w-[85%] hover:shadow-xl hover:shadow-primary/30 transition-all">
           <p className="text-white leading-relaxed">{content}</p>
           <div className="text-xs text-white/70 text-right mt-2 font-light">
             {formatDate(timestamp)}

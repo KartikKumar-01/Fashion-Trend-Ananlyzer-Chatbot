@@ -22,9 +22,9 @@ export function ChatPanel() {
   }, [messages]);
 
   return (
-    <div className="w-full flex flex-col h-full border-r border-gray-700">
+    <div className="w-full flex flex-col h-full border-r border-gray-700 relative">
       {/* Chat Controls */}
-      <div className="bg-gradient-to-r from-purple-900/40 to-background p-5 border-b border-gray-700 flex flex-wrap gap-4 items-center justify-between backdrop-blur-sm shadow-sm">
+      <div className="bg-gradient-to-r from-purple-900/40 to-background p-3 sm:p-5 border-b border-gray-700 flex flex-wrap gap-2 sm:gap-4 items-center justify-between backdrop-blur-sm shadow-sm sticky top-0 z-10">
         <div className="flex gap-2 items-center">
           <SeasonSelector />
           <GenderToggle />
@@ -33,7 +33,7 @@ export function ChatPanel() {
       </div>
 
       {/* Chat Messages Container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-hide bg-gradient-to-b from-background to-background/50">
+      <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-4 sm:space-y-6 scrollbar-hide bg-gradient-to-b from-background to-background/50">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full p-4">
             <div className="text-center p-8 rounded-xl bg-muted/30 backdrop-blur-sm max-w-lg w-full">
