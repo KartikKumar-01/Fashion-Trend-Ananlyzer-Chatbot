@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Shirt } from "lucide-react";
 
 export function ChatPanel() {
-  const { messages, isLoading, sendMessage } = useChat();
+  const { messages, isLoading, sendMessage, currentProducts, showProducts } = useChat(); // Assuming currentProducts and showProducts are added to useChat hook.
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -79,7 +79,26 @@ export function ChatPanel() {
             </div>
           </div>
         )}
-        
+
+        {showProducts && (
+          <div className="p-4 bg-muted/30 rounded-lg border border-purple-900/20">
+            <h3 className="text-sm font-medium text-white mb-4">Recommended Products</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {currentProducts.map((product, index) => (
+                <div key={index} className="bg-muted/70 backdrop-blur-md rounded-lg p-3 border border-purple-900/20">
+                  <div className="flex flex-col space-y-3">
+                    <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-md" />
+                    <div className="flex-1">
+                      <p className="text-white text-sm font-medium">{product.name}</p>
+                      <p className="text-gray-300 text-xs">{product.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div ref={messagesEndRef} />
       </div>
 
